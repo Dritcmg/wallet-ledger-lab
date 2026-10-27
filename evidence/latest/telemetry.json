@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-27T23:34:13.083Z",
+  "purpose": "bounded-synthetic-local-demonstration",
+  "benchmark": false,
+  "limits": {
+    "maximumHttpRequests": 120,
+    "concurrentBetRequests": 2,
+    "initialReplayRequests": 4
+  },
+  "results": {
+    "walletsCreated": 2,
+    "httpRequests": 35,
+    "distinctPublicCommandsProcessed": 6,
+    "businessRejections": 1,
+    "duplicateReplaysVerified": 5,
+    "pendingReferencesAccepted": 1,
+    "referencesResolved": 1,
+    "consistentReconciliations": 2,
+    "referenceRetriesObserved": 2,
+    "outboxDrained": true,
+    "historicalReplayVerified": true
+  },
+  "metrics": {
+    "approvedSamples": 152,
+    "omittedSamples": 0
+  },
+  "demonstrationElapsedMs": 3907
+}

@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-27T23:34:13.449Z",
+  "purpose": "local-telemetry-validation",
+  "benchmark": false,
+  "checks": {
+    "prometheusReady": true,
+    "healthyApplicationTargets": 1,
+    "successfulQueries": 12,
+    "grafanaReady": true,
+    "datasourceProvisioned": true,
+    "datasourceQueryHealthy": true,
+    "dashboardProvisioned": true,
+    "provisionedPanels": 10,
+    "disabledExternalAnalyticsAndUpdates": true,
+    "privateLoginRequired": true
+  },
+  "queries": [
+    {
+      "name": "scrape_up",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "dependencies",
+      "series": 2,
+      "finiteSamples": 2
+    },
+    {
+      "name": "transactions",
+      "series": 5,
+      "finiteSamples": 5
+    },
+    {
+      "name": "outbox_pending",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "oldest_pending",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "publish_p95",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "http_p95",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "responses",
+      "series": 3,
+      "finiteSamples": 3
+    },
+    {
+      "name": "duplicates",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "retries",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "dlq",
+      "series": 1,
+      "finiteSamples": 1
+    },
+    {
+      "name": "reconciliation",
+      "series": 1,
+      "finiteSamples": 1
+    }
+  ],
+  "validationElapsedMs": 252
+}

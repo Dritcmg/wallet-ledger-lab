@@ -1,0 +1,242 @@
+name: wallet-ledger-lab
+
+x-app-environment: &app-environment
+  BIND_HOST: 0.0.0.0
+  DATABASE_URL: postgresql://wager:${POSTGRES_PASSWORD:?Run local setup to generate private credentials}@postgres:5432/wager
+  SQS_ENDPOINT: http://localstack:4566
+  AWS_REGION: us-east-1
+  AWS_ACCESS_KEY_ID: test
+  AWS_SECRET_ACCESS_KEY: test
+  SQS_VISIBILITY_SECONDS: "30"
+  SQS_MAX_ATTEMPTS: "5"
+  REFERENCE_MAX_ATTEMPTS: "8"
+  REFERENCE_TTL_SECONDS: "3600"
+  REFERENCE_RETRY_BASE_MS: "1000"
+  OUTBOX_LEASE_SECONDS: "30"
+  WORKER_INTERVAL_MS: "300"
+  SHUTDOWN_TIMEOUT_MS: "10000"
+
+x-runtime: &runtime
+  image: wallet-ledger-lab:local
+  pull_policy: never
+  init: true
+  networks: [lab]
+
+services:
+  postgres:
+    image: postgres:16.11-alpine3.22
+    environment:
+      POSTGRES_DB: wager
+      POSTGRES_USER: wager
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run local setup to generate private credentials}
+    ports:
+      - "127.0.0.1:55442:5432"
+    networks: [lab]
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wager -d wager"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+  localstack:
+    image: localstack/localstack:4.10.0
+    environment:
+      SERVICES: sqs
+      AWS_DEFAULT_REGION: us-east-1
+      SQS_ENDPOINT_STRATEGY: dynamic
+      DISABLE_EVENTS: "1"
+    ports:
+      - "127.0.0.1:4576:4566"
+    networks: [lab]
+    healthcheck:
+      test: ["CMD", "awslocal", "sqs", "list-queues"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+    restart: unless-stopped
+
+  queues:
+    <<: *runtime
+    environment: *app-environment
+    command: ["bun", "scripts/setup-queues.ts"]
+    depends_on:
+      localstack:
+        condition: service_healthy
+    restart: "no"
+
+  migrate:
+    <<: *runtime
+    environment: *app-environment
+    command: ["bun", "scripts/migrate.ts", "up"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  app:
+    <<: *runtime
+    build:
+      context: .
+      target: runtime
+    environment:
+      <<: *app-environment
+      APP_ROLE: all
+      PORT: "3000"
+    ports:
+      - "127.0.0.1:3100:3000"
+    depends_on:
+      queues:
+        condition: service_completed_successfully
+      migrate:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "bun", "-e", "const r=await fetch('http://localhost:3000/health/ready');process.exit(r.ok?0:1)"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+    stop_grace_period: 20s
+    restart: unless-stopped
+
+  # Database and broker isolation keeps integration fixtures away from the demo.
+  postgres-test:
+    image: postgres:16.11-alpine3.22
+    profiles: [test]
+    environment:
+      POSTGRES_DB: wager_test
+      POSTGRES_USER: wager_test
+      POSTGRES_PASSWORD: ${TEST_POSTGRES_PASSWORD:?Run local setup to generate private test credentials}
+    ports:
+      - "127.0.0.1:55443:5432"
+    networks: [test]
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wager_test -d wager_test"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  localstack-test:
+    image: localstack/localstack:4.10.0
+    profiles: [test]
+    environment:
+      SERVICES: sqs
+      AWS_DEFAULT_REGION: us-east-1
+      SQS_ENDPOINT_STRATEGY: dynamic
+      DISABLE_EVENTS: "1"
+    ports:
+      - "127.0.0.1:4577:4566"
+    networks: [test]
+    healthcheck:
+      test: ["CMD", "awslocal", "sqs", "list-queues"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+      start_period: 10s
+
+  tester:
+    image: wallet-ledger-lab:verification
+    build:
+      context: .
+      target: verification
+    profiles: [test]
+    init: true
+    user: root
+    networks: [test, validation]
+    volumes:
+      - ./evidence:/evidence
+      - ./evidence:/app/evidence
+      - ./artifacts:/private-artifacts
+      - ./artifacts:/app/artifacts
+    environment:
+      <<: *app-environment
+      NODE_ENV: test
+      TEST_APP_ENTRYPOINT: dist/main.js
+      DATABASE_URL: postgresql://wager_test:${TEST_POSTGRES_PASSWORD:?Run local setup to generate private test credentials}@postgres-test:5432/wager_test
+      TEST_DATABASE_URL: postgresql://wager_test:${TEST_POSTGRES_PASSWORD:?Run local setup to generate private test credentials}@postgres-test:5432/wager_test
+      SQS_ENDPOINT: http://localstack-test:4566
+      EVIDENCE_DIR: /evidence/latest
+      PRIVATE_ARTIFACTS_DIR: /private-artifacts/private
+    depends_on:
+      postgres-test:
+        condition: service_healthy
+      localstack-test:
+        condition: service_healthy
+    command: ["bun", "scripts/verify.ts"]
+
+  prometheus:
+    image: prom/prometheus:v3.15.1
+    profiles: [observability]
+    networks: [lab]
+    ports:
+      - "127.0.0.1:9091:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=24h
+    volumes:
+      - ./telemetry/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "/bin/promtool", "check", "ready", "--url=http://localhost:9090"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:13.3.0
+    profiles: [observability]
+    networks: [lab]
+    ports:
+      - "127.0.0.1:3101:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:?Run local setup to generate private credentials}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Run local setup to generate private credentials}
+      GF_SECURITY_DISABLE_GRAVATAR: "true"
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_USERS_ALLOW_ORG_CREATE: "false"
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_ANALYTICS_ENABLED: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+      GF_PLUGINS_PREINSTALL_DISABLED: "true"
+      GF_PLUGINS_PREINSTALL_AUTO_UPDATE: "false"
+      GF_PLUGINS_PUBLIC_KEY_RETRIEVAL_DISABLED: "true"
+      GF_PLUGINS_PLUGIN_ADMIN_ENABLED: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/wallet-ledger-lab.json
+    volumes:
+      - ./telemetry/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./telemetry/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost:3000/api/health"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  postgres-test-data:
+  prometheus-data:
+  grafana-data:
+
+networks:
+  lab:
+  test:
+  # Explicit additional network for the public dependency audit tool.
+  validation:

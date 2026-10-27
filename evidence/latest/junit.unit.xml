@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="unit" tests="118" failures="0" skipped="0">
+  <testsuite name="tests/unit/observability.test.ts" tests="3" failures="0" skipped="0">
+    <testcase classname="tests/unit/observability.test.ts" name="Operational telemetry contracts &gt; gauges replace current values while counters retain observed occurrences" time="0.000390">
+    </testcase>
+    <testcase classname="tests/unit/observability.test.ts" name="Operational telemetry contracts &gt; structured logs retain correlation IDs and discard payloads and credentials" time="0.000210">
+    </testcase>
+    <testcase classname="tests/unit/observability.test.ts" name="Operational telemetry contracts &gt; histograms emit cumulative buckets and escape labels without financial values" time="0.000330">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/transport-http.test.ts" tests="5" failures="0" skipped="0">
+    <testcase classname="tests/unit/transport-http.test.ts" name="Nest HTTP exposes stable status codes, explicit auth hooks, safe errors and separate health" time="0.091540">
+    </testcase>
+    <testcase classname="tests/unit/transport-http.test.ts" name="HTTP treats 55P03 as transient infrastructure failure without exposing driver details" time="0.021260">
+    </testcase>
+    <testcase classname="tests/unit/transport-http.test.ts" name="HTTP treats 57014 as transient infrastructure failure without exposing driver details" time="0.016240">
+    </testcase>
+    <testcase classname="tests/unit/transport-http.test.ts" name="HTTP treats released query runner as transient infrastructure failure without exposing driver details" time="0.015790">
+    </testcase>
+    <testcase classname="tests/unit/transport-http.test.ts" name="HTTP treats pool connection timeout as transient infrastructure failure without exposing driver details" time="0.015910">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/telemetry-portfolio.test.ts" tests="4" failures="0" skipped="0">
+    <testcase classname="tests/unit/telemetry-portfolio.test.ts" name="telemetry accepts only this labs loopback ports or explicit Compose hosts" time="0.001840">
+    </testcase>
+    <testcase classname="tests/unit/telemetry-portfolio.test.ts" name="public metrics snapshots retain only approved operational names and bounded labels" time="0.000980">
+    </testcase>
+    <testcase classname="tests/unit/telemetry-portfolio.test.ts" name="public metrics snapshots refuse identifiers, arbitrary routes and credentials in labels" time="0.000220">
+    </testcase>
+    <testcase classname="tests/unit/telemetry-portfolio.test.ts" name="a non-JSON local response exposes only a stable failure code and HTTP status" time="0.005020">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/wallet-ledger.test.ts" tests="6" failures="0" skipped="0">
+    <testcase classname="tests/unit/wallet-ledger.test.ts" name="Wallet invariant boundaries &gt; opens at version one, including a zero balance" time="0.000670">
+    </testcase>
+    <testcase classname="tests/unit/wallet-ledger.test.ts" name="Wallet invariant boundaries &gt; returns exact movement boundaries and increments version only after successful balance changes" time="0.001240">
+    </testcase>
+    <testcase classname="tests/unit/wallet-ledger.test.ts" name="Wallet invariant boundaries &gt; rejects zero/negative movements, currency mismatch and invalid timestamp without mutation" time="0.000360">
+    </testcase>
+    <testcase classname="tests/unit/wallet-ledger.test.ts" name="Wallet invariant boundaries &gt; rehydrates historical version and makes defensive date copies" time="0.000180">
+    </testcase>
+    <testcase classname="tests/unit/wallet-ledger.test.ts" name="Immutable wallet ledger &gt; reconciles a debit followed by credit with the materialized wallet" time="0.001730">
+    </testcase>
+    <testcase classname="tests/unit/wallet-ledger.test.ts" name="Immutable wallet ledger &gt; rejects unreconciled, zero, negative-balance and cross-currency entries" time="0.000390">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/money.test.ts" tests="34" failures="0" skipped="0">
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; serializes fixed-scale decimal strings and remains immutable" time="0.002220">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;&quot; without rounding" time="0.000220">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1&quot; without rounding" time="0.000020">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1.0&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1.000&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;0.001&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;-1.00&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;-0.00&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;+1.00&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1e2&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1E2&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;NaN&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;Infinity&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot; 1.00&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1.00 &quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;.25&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1,00&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed amount &quot;1.00\n&quot; without rounding">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed currency &quot;brl&quot;" time="0.000040">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed currency &quot;BR&quot;">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed currency &quot;BRLL&quot;">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed currency &quot;B1L&quot;" time="0.000050">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed currency &quot; BRL&quot;" time="0.000050">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects malformed currency &quot;&quot;" time="0.000050">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects unassigned currency code ZZZ in every factory" time="0.000210">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects unassigned currency code ABC in every factory" time="0.000030">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects unassigned currency code AAA in every factory" time="0.000020">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; retains recognized ISO currency BRL as a string" time="0.000170">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; retains recognized ISO currency USD as a string" time="0.000060">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects a currency number instead of coercing it to text" time="0.000060">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects non-string monetary inputs at the runtime boundary" time="0.000210">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; retains exactness at numeric(38,2) limits and rejects overflow" time="0.000480">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; supports signed internal deltas and persistence without allowing negative input" time="0.000260">
+    </testcase>
+    <testcase classname="tests/unit/money.test.ts" name="Money contract &gt; rejects every cross-currency operation, including comparisons" time="0.000270">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/transport-workers.test.ts" tests="3" failures="0" skipped="0">
+    <testcase classname="tests/unit/transport-workers.test.ts" name="outbox normalizes the PostgreSQL UPDATE RETURNING tuple and publishes after claim commit" time="0.001530">
+    </testcase>
+    <testcase classname="tests/unit/transport-workers.test.ts" name="an empty PostgreSQL UPDATE RETURNING tuple makes no broker publication" time="0.000510">
+    </testcase>
+    <testcase classname="tests/unit/transport-workers.test.ts" name="shutdown returns unfinished messages to visibility before the process shutdown budget expires" time="0.073960">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/messages-events.test.ts" tests="7" failures="0" skipped="0">
+    <testcase classname="tests/unit/messages-events.test.ts" name="Integration event envelopes &gt; processed events carry versioned decimal string data and copied dates" time="0.001050">
+    </testcase>
+    <testcase classname="tests/unit/messages-events.test.ts" name="Integration event envelopes &gt; LOSS publishes a processed event without any wallet movement" time="0.000140">
+    </testcase>
+    <testcase classname="tests/unit/messages-events.test.ts" name="Integration event envelopes &gt; rejection and reference waiting have distinct concrete types" time="0.000430">
+    </testcase>
+    <testcase classname="tests/unit/messages-events.test.ts" name="Integration event envelopes &gt; wallet balance changes derive their monetary data from a reconciled ledger" time="0.000450">
+    </testcase>
+    <testcase classname="tests/unit/messages-events.test.ts" name="Inbox and outbox state &gt; inbox completion is idempotent and preserves its first completion time" time="0.000190">
+    </testcase>
+    <testcase classname="tests/unit/messages-events.test.ts" name="Inbox and outbox state &gt; outbox snapshots the envelope and schedules capped exponential backoff" time="0.000500">
+    </testcase>
+    <testcase classname="tests/unit/messages-events.test.ts" name="Inbox and outbox state &gt; rehydrates delayed outbox delivery without resetting retry state" time="0.000080">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/portfolio-tooling.test.ts" tests="13" failures="0" skipped="0">
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="public distribution allowlist &gt; allows source, attribution and only explicitly curated evidence" time="0.000680">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="public distribution allowlist &gt; scans every source and test file while omitting private untracked artifacts" time="0.143060">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="public distribution allowlist &gt; rejects symlinks and path escape before copying" time="0.087740">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="metadata-only privacy detector &gt; detects signed credential patterns, identifiers and private links without returning values" time="0.000660">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="metadata-only privacy detector &gt; retains exact placeholders and public attribution without exempting directories" time="0.000190">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="Bun log compatibility and public evidence &gt; matches the runner corpus and writes escaped JUnit without raw streams" time="0.000680">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="Bun log compatibility and public evidence &gt; rejects mismatched summaries, missing markers and zero tests" time="0.000190">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="Bun log compatibility and public evidence &gt; tracks failure and skip metadata instead of fabricating passing tests" time="0.000120">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="Bun log compatibility and public evidence &gt; auditing only certifies parsed empty audit JSON as clean" time="0.000210">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="Bun log compatibility and public evidence &gt; rejects private entrypoints and records aborted verification as failed without fabricated cases" time="0.000300">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="archive and source integrity gates &gt; hashes executable inputs while excluding generated reports and documentation" time="0.000080">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="archive and source integrity gates &gt; creates deterministic safe ZIP bytes and rejects traversal and symlink entries" time="0.005360">
+    </testcase>
+    <testcase classname="tests/unit/portfolio-tooling.test.ts" name="archive and source integrity gates &gt; blocks missing, stale, failed or tampered evidence" time="0.002010">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/build-reproducibility.test.ts" tests="2" failures="0" skipped="0">
+    <testcase classname="tests/unit/build-reproducibility.test.ts" name="build output is independent of NODE_ENV and does not embed environment secrets" time="0.281970">
+    </testcase>
+    <testcase classname="tests/unit/build-reproducibility.test.ts" name="crash injection requires both test runtime and the explicit switch" time="0.016660">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/wager-transaction.test.ts" tests="25" failures="0" skipped="0">
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; starts pending and supports deferred reference then processing" time="0.000350">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; terminal status PROCESSED forbids every transition" time="0.000190">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; terminal status REJECTED forbids every transition" time="0.000040">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; terminal status FAILED forbids every transition" time="0.000040">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; waiting transactions may reject or fail with an auditable code" time="0.000060">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; rehydration restores persisted state without replaying creation or transitions" time="0.000060">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Transaction lifecycle &gt; same payload is a replay candidate; a different hash conflicts" time="0.000110">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; BET debits, WIN and OPENING credit, LOSS never produces a ledger entry" time="0.000170">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; BET rejects zero and negative amounts" time="0.000080">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; WIN rejects zero and negative amounts" time="0.000030">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; REFUND rejects zero and negative amounts" time="0.000040">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; ROLLBACK rejects zero and negative amounts" time="0.000020">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; OPENING rejects zero and negative amounts" time="0.000010">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; REFUND requires an external reference" time="0.000030">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; ROLLBACK requires an external reference" time="0.000030">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; REFUND fully reverses only a processed BET" time="0.000250">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; ROLLBACK inverses BET, WIN and REFUND and refuses all other kinds" time="0.000210">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; reference cannot cross providerId" time="0.000090">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; reference cannot cross playerId" time="0.000030">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; reference cannot cross walletId" time="0.000030">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; reference cannot cross roundId" time="0.000020">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; reference cannot cross externalTransactionId" time="0.000020">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; reference currency is validated independently of its value" time="0.000110">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; WIN may reference a BET with a different payout amount" time="0.000070">
+    </testcase>
+    <testcase classname="tests/unit/wager-transaction.test.ts" name="Wager operation rules &gt; self reference, empty reference and a BET reference are invalid" time="0.000100">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/money-oracle.test.ts" tests="1" failures="0" skipped="0">
+    <testcase classname="tests/unit/money-oracle.test.ts" name="Money compatibility with independent BigInt oracle v1 &gt; matches every deterministic addition, subtraction, comparison and signed round trip" time="0.007100">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/telemetry-failure.test.ts" tests="1" failures="0" skipped="0">
+    <testcase classname="tests/unit/telemetry-failure.test.ts" name="metrics keep their last successful gauges and mark failed dependencies without leaking details" time="0.012670">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/consumer-shutdown-refinement.test.ts" tests="2" failures="0" skipped="0">
+    <testcase classname="tests/unit/consumer-shutdown-refinement.test.ts" name="normal shutdown drains its poll and releases a late receipt without starting finance" time="0.000270">
+    </testcase>
+    <testcase classname="tests/unit/consumer-shutdown-refinement.test.ts" name="runOnce still processes a direct invocation without starting the background loop" time="0.000390">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/hash.test.ts" tests="2" failures="0" skipped="0">
+    <testcase classname="tests/unit/hash.test.ts" name="Canonical business payload hashing &gt; object order is normalized recursively while array order remains meaningful" time="0.000240">
+    </testcase>
+    <testcase classname="tests/unit/hash.test.ts" name="Canonical business payload hashing &gt; a changed financial field conflicts and absent optional fields have a stable representation" time="0.000060">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/unit/transport.test.ts" tests="10" failures="0" skipped="0">
+    <testcase classname="tests/unit/transport.test.ts" name="public transport contracts &gt; requires the HTTP header and rejects a competing idempotency field in the body" time="0.000090">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="public transport contracts &gt; rejects unknown fields, OPENING, numeric money and excess precision" time="0.000120">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="public transport contracts &gt; wallet opening and references require valid explicit fields" time="0.000120">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="public transport contracts &gt; rejects malformed envelopes, invalid kinds and timestamps" time="0.000100">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="public transport contracts &gt; pagination accepts opaque cursors and bounds page sizes" time="0.000130">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="SQS transaction boundary &gt; acknowledges only after the shared use case commits and carries canonical inbox data" time="0.000390">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="SQS transaction boundary &gt; a transient failure changes visibility and leaves the source message unacknowledged" time="0.000270">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="SQS transaction boundary &gt; invalid envelopes reach the DLQ before source acknowledgement" time="0.000260">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="SQS transaction boundary &gt; a rejected transaction is terminal and acknowledged without retry" time="0.000190">
+    </testcase>
+    <testcase classname="tests/unit/transport.test.ts" name="SQS transaction boundary &gt; an idempotency conflict is a permanent message failure" time="0.000180">
+    </testcase>
+  </testsuite>
+</testsuites>

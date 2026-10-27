@@ -1,0 +1,398 @@
+{
+  "schemaVersion": 1,
+  "algorithm": "sha256",
+  "scope": "src/, tests/, scripts/, telemetry/, .github/, package.json, bun.lock, tsconfig.json, Dockerfile, compose.yaml, .env.example, .gitignore, .dockerignore, .gitleaks.toml; excludes docs, README, architecture, notices, licenses and generated evidence",
+  "fingerprint": "7099868ee0f0fed85db59b1c91ec0b050f869c1f88e4c773737d1a044a149a67",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "13fe89e5cf8ae63a5c18ce8043070ca36fe23c47a88687d5dd978496a13abd7f",
+      "bytes": 152
+    },
+    {
+      "path": ".env.example",
+      "sha256": "2a3a90af9d7b85fbf7fdb38146f44a4f7edd5ef5869cf4a7fa455f9c5708386e",
+      "bytes": 756
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "5864c46e2ede761304137bdf2a15ddf4a6dc93c7a2027cbada5dedc2e883cd10",
+      "bytes": 4204
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "72567bd56e739db62a4b056136fefd6fb22369250c223dc8e7346a2665cec955",
+      "bytes": 591
+    },
+    {
+      "path": ".gitleaks.toml",
+      "sha256": "b9b2af4b94694e997431997335cd0696822b5fcd59f758e4cd717019db3d3888",
+      "bytes": 331
+    },
+    {
+      "path": "bun.lock",
+      "sha256": "5a90a092234aa37dd298f023f196fe75f7799bc9766fed007b2f7221c8a792e5",
+      "bytes": 50924
+    },
+    {
+      "path": "compose.yaml",
+      "sha256": "793c92be4e6b8b697a49b519451d8b3665e77fc1cd044a4a66d462874f9855d8",
+      "bytes": 7067
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "33e0657354b2d00859ef7ad7f4752b016a5ff911a5c699fd4325d9b9a824e1d8",
+      "bytes": 1072
+    },
+    {
+      "path": "package.json",
+      "sha256": "16ae0fda85caa33791342eae600af99eae292876d768c4a5774ef8cdca7fd835",
+      "bytes": 1847
+    },
+    {
+      "path": "scripts/evidence-utils.ts",
+      "sha256": "60925f88c64e01fc0617328e6171bccb5bfd52749702f13919105ad29185a928",
+      "bytes": 17736
+    },
+    {
+      "path": "scripts/local-reset.ts",
+      "sha256": "513d4f256f8ca40d7f45f5b90ea16c9630525c9a0227f1d3f889d1cfe85caab3",
+      "bytes": 7518
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "sha256": "94b983c5cf250c1f29ab4e40010c46eefd3036ac9fbe431cf7077ae080ceb05c",
+      "bytes": 1344
+    },
+    {
+      "path": "scripts/package-portfolio.ts",
+      "sha256": "4fe97817dc261103ccdaccf555155e036491b7f2deee592d5a2f5abc1127edc0",
+      "bytes": 8199
+    },
+    {
+      "path": "scripts/publication-check.ts",
+      "sha256": "70552356734145785bd5c3af09395dc0af611ad6e7f917c24603f241396777ad",
+      "bytes": 4341
+    },
+    {
+      "path": "scripts/setup-local.ts",
+      "sha256": "a501357f86e5811ec327cda30973d7b86f37e41cf39333223201ca8be4ad21fe",
+      "bytes": 2658
+    },
+    {
+      "path": "scripts/setup-queues.ts",
+      "sha256": "f67bd11c1e4d2ccb9f717c45bfe5746afecfff87d764a6b1210e5d582e0889e7",
+      "bytes": 739
+    },
+    {
+      "path": "scripts/smoke.ts",
+      "sha256": "6d0e7b5f57b27f8c3a9fac82ea87a148cb69f0ff0371613ba7679ab6c2f264e8",
+      "bytes": 6466
+    },
+    {
+      "path": "scripts/telemetry-demo.ts",
+      "sha256": "1be13293b579a5f3de5dd80bece73fda3dacbda6fd42dc8505ce9e278c558d3e",
+      "bytes": 6785
+    },
+    {
+      "path": "scripts/validate-telemetry.ts",
+      "sha256": "803da2dfbf9b6414e4186bfdf07fc22b4b62de6a9e515f9cf98e9d056d2df583",
+      "bytes": 6322
+    },
+    {
+      "path": "scripts/verify.ts",
+      "sha256": "126e8694ce0750a0b0a348328d01c931517a0967217b0818d7ace3fecb59f5ec",
+      "bytes": 15542
+    },
+    {
+      "path": "src/application/contracts.ts",
+      "sha256": "b20c95c67370f47928fc70c56d39779475b7ac274aed6c46d664586984583da2",
+      "bytes": 1180
+    },
+    {
+      "path": "src/application/finance.service.ts",
+      "sha256": "cc8497d402c2fb485183e090568added870da7fbc8a36318f0c9ad3b86da7353",
+      "bytes": 24915
+    },
+    {
+      "path": "src/application/hash.ts",
+      "sha256": "a6f0c2052479261ad71be3fff5859e44d1e240e81b21ebd29408898460307a0b",
+      "bytes": 603
+    },
+    {
+      "path": "src/config.ts",
+      "sha256": "53a8c9abf62942d2a9709cbfcd47520ab87e1d71e05eca8a97085255d4288b4f",
+      "bytes": 1579
+    },
+    {
+      "path": "src/domain/errors.ts",
+      "sha256": "2c0712e25b1868f050f3c8eddbd4069285c406e26a60af501ca9af82252a1805",
+      "bytes": 2015
+    },
+    {
+      "path": "src/domain/events.ts",
+      "sha256": "9312b7adf28c83fc1b9aa6da669af769925a85506adeabaf6d783e7b89e4fc25",
+      "bytes": 9258
+    },
+    {
+      "path": "src/domain/inbox.ts",
+      "sha256": "20a1ceb37485772b952d1a05cec9e90af4056c34687346c2bab61d2a1c8e2b2a",
+      "bytes": 1689
+    },
+    {
+      "path": "src/domain/index.ts",
+      "sha256": "8c501018673080f6e4bc681d0acc0469fd7d4b2ede5932832374d535c2deb6d2",
+      "bytes": 217
+    },
+    {
+      "path": "src/domain/ledger.ts",
+      "sha256": "a0808dc04be6c355e56d7ce69f002e7232cabeb99369d73a5bc7ed9ca6a70afa",
+      "bytes": 2406
+    },
+    {
+      "path": "src/domain/money.ts",
+      "sha256": "0e5b366aeb7fe8b3238743dba97e8183ddf9d4a22d7345ca2544060e20f99538",
+      "bytes": 3532
+    },
+    {
+      "path": "src/domain/outbox.ts",
+      "sha256": "5cad173f2686e7d7965465c5a5304f747ca7826a85e451aa4cdd157eff639f68",
+      "bytes": 2978
+    },
+    {
+      "path": "src/domain/wager-transaction.ts",
+      "sha256": "28861cd8ef9ecc92b9b1029d71ae924499160583cfc1b5f3d45de909a5a0f443",
+      "bytes": 9701
+    },
+    {
+      "path": "src/domain/wallet.ts",
+      "sha256": "b50ba9b4071539b7f378f068c90304d5bd32e409775fc5a41ebd537a7fc19d3c",
+      "bytes": 2878
+    },
+    {
+      "path": "src/infra/database.ts",
+      "sha256": "e8ecf3e0b3712fe2d6a897e7e9df7da0abdbc80f60dc1b1eb36ff3aaedcf7b8a",
+      "bytes": 1533
+    },
+    {
+      "path": "src/infra/entities.ts",
+      "sha256": "654978f667162b94ba1f7e625668f1ebba5c79f1edb1112fe4ef1ee581a2a637",
+      "bytes": 3673
+    },
+    {
+      "path": "src/infra/migrations/1730000000000-Initial.ts",
+      "sha256": "78a1e2aeb0b9811bc344739f8434610210feebcd9d5b4d1b4f5ccdb04bfdcdf2",
+      "bytes": 10282
+    },
+    {
+      "path": "src/infra/migrations/1730000001000-AuditGuards.ts",
+      "sha256": "6bff1dd70f3c873c2284a026474215bf38ac08686b333a038b6215cbe3bf324d",
+      "bytes": 1956
+    },
+    {
+      "path": "src/infra/migrations/1730000002000-FinancialGuards.ts",
+      "sha256": "666feb3fd102c44a12dd1513277e4ecd36868004c0dff51ae7d54abc7b4da99b",
+      "bytes": 4741
+    },
+    {
+      "path": "src/infra/observability.ts",
+      "sha256": "862aa44364bc0c15925c52350b69d33cca900453fe795a33f95e0182f34023ae",
+      "bytes": 5498
+    },
+    {
+      "path": "src/infra/sqs.ts",
+      "sha256": "6cf1ebf441768d0c8e2eeffeb7b71464cf01b8b104adc002dd0c305161868c38",
+      "bytes": 4211
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "bed009a2f56fb4a256bc6206d64beb11ffa997d10f74695f05689203c1db7ced",
+      "bytes": 1918
+    },
+    {
+      "path": "src/transport/app.ts",
+      "sha256": "bf1382415d415ecb9b943151f73fc6011ad37d69288746a3436b9848281c7529",
+      "bytes": 9618
+    },
+    {
+      "path": "src/transport/validation.ts",
+      "sha256": "18297561f2b81dd1cafd71c06ef4e91cdcfbeb86095d3eef2aae016b7e711fb7",
+      "bytes": 5282
+    },
+    {
+      "path": "src/workers/index.ts",
+      "sha256": "0d88c407f10a726c0fb01eaa99f45d42848b0bf7be88e96cef5a3c162aa143b8",
+      "bytes": 718
+    },
+    {
+      "path": "src/workers/lifecycle.ts",
+      "sha256": "0e79fd81cec3e5bfcd608bca42c599131fcd50099f6c1da4e18c06cac4849835",
+      "bytes": 1688
+    },
+    {
+      "path": "src/workers/outbox-publisher.ts",
+      "sha256": "78fd38fb2d11f763cc68feeaddd6410c2fcd542f65bd645375671091350db8c8",
+      "bytes": 4192
+    },
+    {
+      "path": "src/workers/pending-reference.ts",
+      "sha256": "3e360868695bf6c50bdf37cf0e3ced4b3530f708e002883b1e0af283995c8e5c",
+      "bytes": 380
+    },
+    {
+      "path": "src/workers/sqs-consumer.ts",
+      "sha256": "f33fb7de6cff239b89aa520998678930cb9094ca1d7954a89294c458d6c55563",
+      "bytes": 8390
+    },
+    {
+      "path": "telemetry/grafana/dashboards/wallet-ledger-lab.json",
+      "sha256": "60fef5a5614ea429777034677553cef7da52f1434901f560bd8a17fda6f8745b",
+      "bytes": 15605
+    },
+    {
+      "path": "telemetry/grafana/provisioning/dashboards/local.yml",
+      "sha256": "fe4768e9fc45980d3ef005f3acd08a517139443fa2d7ec9f2dc89b752aa107aa",
+      "bytes": 246
+    },
+    {
+      "path": "telemetry/grafana/provisioning/datasources/prometheus.yml",
+      "sha256": "849f476fed794c260f39f117d0286302be94659f65c182a050360f0f567aa787",
+      "bytes": 274
+    },
+    {
+      "path": "telemetry/lib.ts",
+      "sha256": "d7014bc9ab925243f2a8edb976bd62939621b505b2871b17b2282523afce69d8",
+      "bytes": 8052
+    },
+    {
+      "path": "telemetry/prometheus/prometheus.yml",
+      "sha256": "189fe90b6b1b75f7b000f959d3b6eee44066b2cd62b8c0f06dd827a5fed240a2",
+      "bytes": 493
+    },
+    {
+      "path": "telemetry/queries.ts",
+      "sha256": "ed70ed31e1fea8f04d93ebc8e1aa6f1bb448e3760fdb69b996a81a0d501339e4",
+      "bytes": 1345
+    },
+    {
+      "path": "tests/integration/financial-refinement.test.ts",
+      "sha256": "baa6ee086aa3af7d90ee4d8a5a4da633cacf5f256d8a5b0d8847399ef4c3c23b",
+      "bytes": 5958
+    },
+    {
+      "path": "tests/integration/fixtures.ts",
+      "sha256": "c4937a50de60925d27b69f91f6b88961e1774254b0119d4a08dc1ea41078f84e",
+      "bytes": 9502
+    },
+    {
+      "path": "tests/integration/observability-refinement.test.ts",
+      "sha256": "4d21aa9ddb8d5b068fa903927bf2a5aa71d627797c1dd9da8f21000edf119c6d",
+      "bytes": 7980
+    },
+    {
+      "path": "tests/integration/outbox-refinement.test.ts",
+      "sha256": "aac1e8fe75621fc07614e129ab0bf45a795df832c48fc9732efea1a064f8b79f",
+      "bytes": 9235
+    },
+    {
+      "path": "tests/integration/publisher-crash.fixture.ts",
+      "sha256": "1c225389bfd52a14ce5f6907313e89b5a9738f09963272210c7c14e0a1564d93",
+      "bytes": 1466
+    },
+    {
+      "path": "tests/integration/recovery-refinement.test.ts",
+      "sha256": "88a203e52c2f4cd5b0345eed29b1bdd99db2db1cd8a02f928ddcc95993d2ec31",
+      "bytes": 10950
+    },
+    {
+      "path": "tests/integration/schema-refinement.test.ts",
+      "sha256": "1bfce38f7f5c84efe43481cff96140bfe33ac0bf41b3b3f0dc345edaba19b18a",
+      "bytes": 10134
+    },
+    {
+      "path": "tests/integration/system.test.ts",
+      "sha256": "1b33f133bb6711f9741766a62ac4bc195a66f48cbac3db8ffcf2e6b940225931",
+      "bytes": 35006
+    },
+    {
+      "path": "tests/unit/build-reproducibility.test.ts",
+      "sha256": "2f77c14526a4d3c9aeba93580fe9a33f4497ab313c79c4c481fa61cbd2e9e7db",
+      "bytes": 2141
+    },
+    {
+      "path": "tests/unit/consumer-shutdown-refinement.test.ts",
+      "sha256": "6b258188995194d857481503ebcbc940bde9f9b8c7bea13c30087d31754ca198",
+      "bytes": 3276
+    },
+    {
+      "path": "tests/unit/hash.test.ts",
+      "sha256": "0c8b843f641b62be837d8deb040f09a0736b9f8fe09c4d27bdb058afa565af61",
+      "bytes": 977
+    },
+    {
+      "path": "tests/unit/messages-events.test.ts",
+      "sha256": "62ca02d66ed408730d413906ec7a1422a6f469b13dff855a995d163d8f44e4d0",
+      "bytes": 6398
+    },
+    {
+      "path": "tests/unit/money-oracle.test.ts",
+      "sha256": "8b4a102c5920e311de983799934f6297f116be0f8ee18b7f5b94dc874936914a",
+      "bytes": 1958
+    },
+    {
+      "path": "tests/unit/money.test.ts",
+      "sha256": "ae9aba9b5a5e2045b44099100d509e352b4cc14596a978aa1bd3c566933a61a4",
+      "bytes": 4060
+    },
+    {
+      "path": "tests/unit/observability.test.ts",
+      "sha256": "163d4ee2f9056e41664369c0b8948c97a2c86358830dfd0757dde11637981b73",
+      "bytes": 2585
+    },
+    {
+      "path": "tests/unit/portfolio-tooling.test.ts",
+      "sha256": "8676102348f9323641c9bd85ddc554769f93c156f6ec53fdc4462b66109b1886",
+      "bytes": 11670
+    },
+    {
+      "path": "tests/unit/telemetry-failure.test.ts",
+      "sha256": "53afc5b3001420419d84778d44839bebec4af2dd261d7fa99d7fc6cbcafae4c1",
+      "bytes": 3127
+    },
+    {
+      "path": "tests/unit/telemetry-portfolio.test.ts",
+      "sha256": "887dab79e9865175a44220cacce568a3f2ed44e4cfbb6878aa458e9279aff502",
+      "bytes": 2262
+    },
+    {
+      "path": "tests/unit/transport-http.test.ts",
+      "sha256": "cc7d0c642b0ed20683ffea2955c04872177593e3b97461fdcf8379a7b4cd1b75",
+      "bytes": 6273
+    },
+    {
+      "path": "tests/unit/transport-workers.test.ts",
+      "sha256": "638866887fe9936f3116d5b97ddf558574b2768e2a7958a5dc374f195d893650",
+      "bytes": 4362
+    },
+    {
+      "path": "tests/unit/transport.test.ts",
+      "sha256": "a30a32632081f745ad819a94fdcee5daea697b5937cb1a344643c15d80dc7be9",
+      "bytes": 7033
+    },
+    {
+      "path": "tests/unit/wager-transaction.test.ts",
+      "sha256": "ab03c5b030f7a24b7ead156de74019191de2ee6018216b77476236547d41fbf5",
+      "bytes": 8894
+    },
+    {
+      "path": "tests/unit/wallet-ledger.test.ts",
+      "sha256": "f86cbcfa0760db0976deae72789e9b9cddbbf04fdee62ee2e4a6ce40d34759fc",
+      "bytes": 5112
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "b8c9d7c81407e67305ec47ada3556f82e16d4f524a5757d77f08e09969bda4ea",
+      "bytes": 444
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="integration" tests="47" failures="0" skipped="0">
+  <testsuite name="tests/integration/system.test.ts" tests="21" failures="0" skipped="0">
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; wallet opening is atomic, zero has no ledger, and duplicate player/currency conflicts" time="0.039600">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; 50 identical requests through three processes debit once and replay the historical balance" time="0.409140">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; two concurrent bets of 80 from 100 produce one debit and an audited rejection" time="0.062660">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; different wallets continue while another wallet is SQL-locked" time="0.103550">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; LOSS records an outcome without balance, version, ledger or balance event" time="0.021070">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; WIN, REFUND and ROLLBACK follow reference rules and reverse once per operation kind" time="0.138610">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; a rollback that would make balance negative has a distinct rejection code" time="0.044850">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; reference delivered later is reprocessed and exhausted references reject auditably" time="0.103150">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; currency mismatch is persisted as rejected; same key with different payload returns conflict" time="0.072270">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; HTTP validates the header, external OPENING, body shape and stable ledger pagination" time="0.073900">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real PostgreSQL and three HTTP application processes &gt; exhausted delivery cannot fail another payload and genuine failures retain their audit event" time="0.072600">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="SQL schema enforcement without bypassing ledger guards &gt; ledger UPDATE/DELETE and unmatched balance writes fail and leave the wallet untouched" time="0.037450">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="SQL schema enforcement without bypassing ledger guards &gt; financial transaction rolls back inbox, wallet, ledger and outbox together" time="0.066820">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="SQL schema enforcement without bypassing ledger guards &gt; migration up/down/up succeeds in a new isolated schema" time="0.348210">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; two publishers claim disjoint outbox batches and deliver committed envelopes" time="2.314110">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; a real broker publication error persists retry state and another publisher recovers" time="0.065580">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; redelivered business message with distinct SQS delivery IDs creates one inbox and debit" time="0.066740">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; malformed contract moves to the real DLQ with a stable failure code" time="0.036520">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; a real PostgreSQL serialization error leaves SQS unacked and redelivery recovers" time="1.926210">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; retry budget exhaustion sends a real message to DLQ without a partial debit" time="5.105650">
+    </testcase>
+    <testcase classname="tests/integration/system.test.ts" name="Real SQS inbox, transactional outbox and process recovery &gt; worker killed after commit recovers with three new processes and no duplicated debit/event" time="4.505840">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/integration/recovery-refinement.test.ts" tests="3" failures="0" skipped="0">
+    <testcase classname="tests/integration/recovery-refinement.test.ts" name="a producer killed after HTTP commit leaves unpublished events for three replacement workers" time="2.241830">
+    </testcase>
+    <testcase classname="tests/integration/recovery-refinement.test.ts" name="a reused inbox message ID with different contents reaches DLQ without replacing its hash or debit" time="0.052620">
+    </testcase>
+    <testcase classname="tests/integration/recovery-refinement.test.ts" name="real SIGTERM releases a SQL-blocked delivery before unlocking and recovery debits once" time="2.112080">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/integration/observability-refinement.test.ts" tests="3" failures="0" skipped="0">
+    <testcase classname="tests/integration/observability-refinement.test.ts" name="Persisted status, backlog and structured telemetry &gt; metrics reflect worker transitions and FAILED rows without counting a replay as another transaction" time="0.107150">
+    </testcase>
+    <testcase classname="tests/integration/observability-refinement.test.ts" name="Persisted status, backlog and structured telemetry &gt; publisher logs keep the wallet distinct from a transaction aggregate and omit monetary payloads" time="0.038930">
+    </testcase>
+    <testcase classname="tests/integration/observability-refinement.test.ts" name="reconciliation reports signed historical divergence, logs it, and never repairs data silently" time="0.048550">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/integration/financial-refinement.test.ts" tests="5" failures="0" skipped="0">
+    <testcase classname="tests/integration/financial-refinement.test.ts" name="Financial edge contracts verified through real persistence &gt; TRUNCATE cannot remove ledger or transaction audit, even through CASCADE" time="0.020160">
+    </testcase>
+    <testcase classname="tests/integration/financial-refinement.test.ts" name="Financial edge contracts verified through real persistence &gt; another idempotency key cannot reapply an external operation" time="0.097440">
+    </testcase>
+    <testcase classname="tests/integration/financial-refinement.test.ts" name="Financial edge contracts verified through real persistence &gt; different concurrent refunds of one bet produce one credit and an audited rejection" time="0.072170">
+    </testcase>
+    <testcase classname="tests/integration/financial-refinement.test.ts" name="Financial edge contracts verified through real persistence &gt; PostgreSQL preserves the monetary boundary exactly and an overflowing credit is rejected without mutation" time="0.017000">
+    </testcase>
+    <testcase classname="tests/integration/financial-refinement.test.ts" name="Financial edge contracts verified through real persistence &gt; reference TTL expires before the attempt budget and zero LOSS changes no balance or version" time="1.124440">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/integration/schema-refinement.test.ts" tests="13" failures="0" skipped="0">
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Finite monetary values enforced by real PostgreSQL &gt; wallet balance rejects numeric NaN" time="0.007580">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Finite monetary values enforced by real PostgreSQL &gt; transaction amount rejects numeric NaN" time="0.002310">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Finite monetary values enforced by real PostgreSQL &gt; transaction result balance rejects numeric NaN" time="0.002500">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Finite monetary values enforced by real PostgreSQL &gt; ledger amount rejects numeric NaN" time="0.002680">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Finite monetary values enforced by real PostgreSQL &gt; ledger balance before rejects numeric NaN" time="0.002590">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Finite monetary values enforced by real PostgreSQL &gt; ledger balance after rejects numeric NaN" time="0.002160">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Continuous monetary history enforced at the deferred transaction boundary &gt; rejects a discontinuous before/after snapshot even when the global ledger sum matches" time="0.005360">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Continuous monetary history enforced at the deferred transaction boundary &gt; rejects missing ledger versions even when the final version, balance and arithmetic match" time="0.003660">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Continuous monetary history enforced at the deferred transaction boundary &gt; rejects an OPENING assigned to the first version after a zero wallet" time="0.002890">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Continuous monetary history enforced at the deferred transaction boundary &gt; an empty ledger requires zero balance and initial version one" time="0.002960">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Continuous monetary history enforced at the deferred transaction boundary &gt; accepts a positive opening followed by a matching credit" time="0.006510">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="Continuous monetary history enforced at the deferred transaction boundary &gt; accepts a first credit at version two when the wallet opened with zero" time="0.003270">
+    </testcase>
+    <testcase classname="tests/integration/schema-refinement.test.ts" name="all three migrations reverse and reapply in a rolled-back isolated schema; financial down retains rows" time="0.150350">
+    </testcase>
+  </testsuite>
+  <testsuite name="tests/integration/outbox-refinement.test.ts" tests="2" failures="0" skipped="0">
+    <testcase classname="tests/integration/outbox-refinement.test.ts" name="a publisher killed after its real SQL claim is recovered after lease expiry with the original event IDs" time="1.963910">
+    </testcase>
+    <testcase classname="tests/integration/outbox-refinement.test.ts" name="a publisher that loses its token after a real send cannot finalize or clear the new owners claim" time="0.159860">
+    </testcase>
+  </testsuite>
+</testsuites>

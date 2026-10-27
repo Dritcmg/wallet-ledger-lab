@@ -1,0 +1,609 @@
+{
+  "id": null,
+  "uid": "wallet-ledger-lab",
+  "title": "Wallet Ledger Lab — local telemetry",
+  "description": "Synthetic local demonstration. Operational observations are not a capacity benchmark. No customer, provider or wallet identifiers are metric labels.",
+  "tags": [
+    "local",
+    "synthetic",
+    "financial-integrity"
+  ],
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "editable": false,
+  "refresh": "5s",
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [],
+  "templating": {
+    "list": []
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "API scrape health",
+      "type": "stat",
+      "description": "1 means the configured local API target was scraped successfully.",
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "up{job=\"wallet-ledger-lab\"}",
+          "legendFormat": "API scrape",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bool",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Dependency collection health",
+      "type": "timeseries",
+      "description": "A failed collector retains old snapshots; consult these flags before interpreting gauges.",
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 18,
+        "h": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "wager_metrics_dependency_up{job=\"wallet-ledger-lab\"}",
+          "legendFormat": "{{dependency}}",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "bool",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "title": "Persisted transactions by status",
+      "type": "timeseries",
+      "description": "Current SQL rows by status, including internal OPENING. Replays do not create additional transactions.",
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "max by (status) (wager_transactions{job=\"wallet-ledger-lab\"})",
+          "legendFormat": "{{status}}",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "title": "Pending outbox events",
+      "type": "stat",
+      "description": "Unpublished SQL events. This gauge can grow while SQS publication is unavailable.",
+      "gridPos": {
+        "x": 12,
+        "y": 4,
+        "w": 6,
+        "h": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "max(wager_outbox_pending_messages{job=\"wallet-ledger-lab\"})",
+          "legendFormat": "Pending events",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Oldest pending event",
+      "type": "stat",
+      "description": "Age in seconds of the oldest unpublished event. Zero when the backlog is empty.",
+      "gridPos": {
+        "x": 18,
+        "y": 4,
+        "w": 6,
+        "h": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "max(wager_outbox_oldest_age_seconds{job=\"wallet-ledger-lab\"})",
+          "legendFormat": "Oldest age",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 3,
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 6,
+      "title": "Observed publish delay p95",
+      "type": "timeseries",
+      "description": "Approximate p95 from cumulative process histogram buckets. This local synthetic sample is not a benchmark; pending age covers unpublished events.",
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le) (wager_outbox_lag_seconds_bucket{job=\"wallet-ledger-lab\"})) or vector(0)",
+          "legendFormat": "Publication delay p95",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 3,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Observed HTTP duration p95",
+      "type": "timeseries",
+      "description": "Approximate p95 from cumulative business-route histogram buckets since process start, excluding metrics and health. Synthetic local observations are not a production latency target.",
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum by (le) (wager_http_duration_seconds_bucket{job=\"wallet-ledger-lab\",route!~\"/health/.*|/metrics\"})) or vector(0)",
+          "legendFormat": "HTTP duration p95",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 3,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 8,
+      "title": "Observed command responses",
+      "type": "timeseries",
+      "description": "Process counter since restart, including idempotent replays. Distinct from persisted transaction rows.",
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "sum by (status) (wager_transaction_responses_total{job=\"wallet-ledger-lab\"})",
+          "legendFormat": "{{status}}",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 9,
+      "title": "Observed duplicates and retries",
+      "type": "timeseries",
+      "description": "Process counters since restart. Low synthetic volume does not measure production capacity.",
+      "gridPos": {
+        "x": 0,
+        "y": 20,
+        "w": 12,
+        "h": 8
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "sum(wager_duplicates_total{job=\"wallet-ledger-lab\"}) or vector(0)",
+          "legendFormat": "Duplicate replays",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        },
+        {
+          "expr": "(sum(wager_retries_total{job=\"wallet-ledger-lab\"}) or vector(0)) + (sum(wager_reference_retries_total{job=\"wallet-ledger-lab\"}) or vector(0))",
+          "legendFormat": "Retries",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 10,
+            "showPoints": "never",
+            "spanNulls": false
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "title": "DLQ and reconciliation",
+      "type": "stat",
+      "description": "SQS depth is approximate. Reconciliation counter is process-local and resets on restart.",
+      "gridPos": {
+        "x": 12,
+        "y": 24,
+        "w": 12,
+        "h": 4
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "wallet-ledger-prometheus"
+      },
+      "pluginVersion": "13.3.0",
+      "targets": [
+        {
+          "expr": "max(wager_dlq_messages{job=\"wallet-ledger-lab\"})",
+          "legendFormat": "Approximate DLQ depth",
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        },
+        {
+          "expr": "sum(wager_reconciliation_mismatches_total{job=\"wallet-ledger-lab\"}) or vector(0)",
+          "legendFormat": "Detected reconciliation differences",
+          "refId": "B",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "wallet-ledger-prometheus"
+          },
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "orientation": "auto",
+        "textMode": "auto",
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto"
+      }
+    }
+  ]
+}

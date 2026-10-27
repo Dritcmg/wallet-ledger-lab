@@ -1,0 +1,13 @@
+title = "Wallet Ledger Lab public distribution policy"
+
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Exact synthetic diagnostic fixtures and generated-local-secret placeholders"
+regexTarget = "match"
+regexes = [
+  '''\bnever-log-password\b''',
+  '''\braw-private-password\b''',
+  '''\bGENERATED_BY_SETUP_LOCAL\b''',
+]

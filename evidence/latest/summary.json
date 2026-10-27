@@ -1,0 +1,1135 @@
+{
+  "schemaVersion": 1,
+  "status": "PASSED",
+  "generatedAt": "2026-10-27T23:35:01.619Z",
+  "runtime": {
+    "bun": "1.4.4",
+    "platform": "linux",
+    "arch": "x64",
+    "applicationEntrypoint": "dist/main.js"
+  },
+  "artifact": {
+    "path": "dist/main.js",
+    "sha256": "f94645bf474edd961f244517712928183c93e161b80c67c6a2bb044e4ba1af3d",
+    "bytes": 110923
+  },
+  "source": {
+    "fingerprint": "7099868ee0f0fed85db59b1c91ec0b050f869c1f88e4c773737d1a044a149a67",
+    "algorithm": "sha256",
+    "scope": "src/, tests/, scripts/, telemetry/, .github/, package.json, bun.lock, tsconfig.json, Dockerfile, compose.yaml, .env.example, .gitignore, .dockerignore, .gitleaks.toml; excludes docs, README, architecture, notices, licenses and generated evidence"
+  },
+  "steps": [
+    {
+      "name": "typecheck",
+      "command": "bun run typecheck",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 3236
+    },
+    {
+      "name": "build",
+      "command": "bun run build",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 55
+    },
+    {
+      "name": "unit",
+      "command": "bun test ./tests/unit",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 1356
+    },
+    {
+      "name": "integration",
+      "command": "bun test --timeout 120000 --max-concurrency 1 ./tests/integration",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 26163
+    },
+    {
+      "name": "audit",
+      "command": "bun audit --json",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 671
+    },
+    {
+      "name": "publication",
+      "command": "bun scripts/publication-check.ts --json",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 144
+    },
+    {
+      "name": "gitleaks-version",
+      "command": "gitleaks version",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 26
+    },
+    {
+      "name": "gitleaks",
+      "command": "gitleaks dir public-stage --config .gitleaks.toml --redact --report-format json --report-path private-report.json",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 368
+    },
+    {
+      "name": "application-entrypoint",
+      "command": "validate integration application entrypoint",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 0
+    },
+    {
+      "name": "source-integrity",
+      "command": "source fingerprint comparison",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 2
+    },
+    {
+      "name": "curated-publication",
+      "command": "publication check of curated evidence",
+      "status": "PASSED",
+      "exitCode": 0,
+      "durationMs": 123
+    }
+  ],
+  "tests": {
+    "unit": {
+      "valid": true,
+      "issues": [],
+      "cases": [
+        {
+          "file": "tests/unit/observability.test.ts",
+          "name": "Operational telemetry contracts > gauges replace current values while counters retain observed occurrences",
+          "status": "passed",
+          "durationSeconds": 0.00039
+        },
+        {
+          "file": "tests/unit/observability.test.ts",
+          "name": "Operational telemetry contracts > structured logs retain correlation IDs and discard payloads and credentials",
+          "status": "passed",
+          "durationSeconds": 0.00020999999999999998
+        },
+        {
+          "file": "tests/unit/observability.test.ts",
+          "name": "Operational telemetry contracts > histograms emit cumulative buckets and escape labels without financial values",
+          "status": "passed",
+          "durationSeconds": 0.00033
+        },
+        {
+          "file": "tests/unit/transport-http.test.ts",
+          "name": "Nest HTTP exposes stable status codes, explicit auth hooks, safe errors and separate health",
+          "status": "passed",
+          "durationSeconds": 0.09154000000000001
+        },
+        {
+          "file": "tests/unit/transport-http.test.ts",
+          "name": "HTTP treats 55P03 as transient infrastructure failure without exposing driver details",
+          "status": "passed",
+          "durationSeconds": 0.02126
+        },
+        {
+          "file": "tests/unit/transport-http.test.ts",
+          "name": "HTTP treats 57014 as transient infrastructure failure without exposing driver details",
+          "status": "passed",
+          "durationSeconds": 0.016239999999999997
+        },
+        {
+          "file": "tests/unit/transport-http.test.ts",
+          "name": "HTTP treats released query runner as transient infrastructure failure without exposing driver details",
+          "status": "passed",
+          "durationSeconds": 0.01579
+        },
+        {
+          "file": "tests/unit/transport-http.test.ts",
+          "name": "HTTP treats pool connection timeout as transient infrastructure failure without exposing driver details",
+          "status": "passed",
+          "durationSeconds": 0.01591
+        },
+        {
+          "file": "tests/unit/telemetry-portfolio.test.ts",
+          "name": "telemetry accepts only this labs loopback ports or explicit Compose hosts",
+          "status": "passed",
+          "durationSeconds": 0.00184
+        },
+        {
+          "file": "tests/unit/telemetry-portfolio.test.ts",
+          "name": "public metrics snapshots retain only approved operational names and bounded labels",
+          "status": "passed",
+          "durationSeconds": 0.00098
+        },
+        {
+          "file": "tests/unit/telemetry-portfolio.test.ts",
+          "name": "public metrics snapshots refuse identifiers, arbitrary routes and credentials in labels",
+          "status": "passed",
+          "durationSeconds": 0.00022
+        },
+        {
+          "file": "tests/unit/telemetry-portfolio.test.ts",
+          "name": "a non-JSON local response exposes only a stable failure code and HTTP status",
+          "status": "passed",
+          "durationSeconds": 0.005019999999999999
+        },
+        {
+          "file": "tests/unit/wallet-ledger.test.ts",
+          "name": "Wallet invariant boundaries > opens at version one, including a zero balance",
+          "status": "passed",
+          "durationSeconds": 0.00067
+        },
+        {
+          "file": "tests/unit/wallet-ledger.test.ts",
+          "name": "Wallet invariant boundaries > returns exact movement boundaries and increments version only after successful balance changes",
+          "status": "passed",
+          "durationSeconds": 0.00124
+        },
+        {
+          "file": "tests/unit/wallet-ledger.test.ts",
+          "name": "Wallet invariant boundaries > rejects zero/negative movements, currency mismatch and invalid timestamp without mutation",
+          "status": "passed",
+          "durationSeconds": 0.00035999999999999997
+        },
+        {
+          "file": "tests/unit/wallet-ledger.test.ts",
+          "name": "Wallet invariant boundaries > rehydrates historical version and makes defensive date copies",
+          "status": "passed",
+          "durationSeconds": 0.00017999999999999998
+        },
+        {
+          "file": "tests/unit/wallet-ledger.test.ts",
+          "name": "Immutable wallet ledger > reconciles a debit followed by credit with the materialized wallet",
+          "status": "passed",
+          "durationSeconds": 0.00173
+        },
+        {
+          "file": "tests/unit/wallet-ledger.test.ts",
+          "name": "Immutable wallet ledger > rejects unreconciled, zero, negative-balance and cross-currency entries",
+          "status": "passed",
+          "durationSeconds": 0.00039
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > serializes fixed-scale decimal strings and remains immutable",
+          "status": "passed",
+          "durationSeconds": 0.00222
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"\" without rounding",
+          "status": "passed",
+          "durationSeconds": 0.00022
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1\" without rounding",
+          "status": "passed",
+          "durationSeconds": 0.00002
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1.0\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1.000\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"0.001\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"-1.00\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"-0.00\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"+1.00\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1e2\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1E2\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"NaN\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"Infinity\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \" 1.00\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1.00 \" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \".25\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1,00\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed amount \"1.00\\n\" without rounding",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed currency \"brl\"",
+          "status": "passed",
+          "durationSeconds": 0.00004
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed currency \"BR\"",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed currency \"BRLL\"",
+          "status": "passed",
+          "durationSeconds": null
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed currency \"B1L\"",
+          "status": "passed",
+          "durationSeconds": 0.00005
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed currency \" BRL\"",
+          "status": "passed",
+          "durationSeconds": 0.00005
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects malformed currency \"\"",
+          "status": "passed",
+          "durationSeconds": 0.00005
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects unassigned currency code ZZZ in every factory",
+          "status": "passed",
+          "durationSeconds": 0.00020999999999999998
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects unassigned currency code ABC in every factory",
+          "status": "passed",
+          "durationSeconds": 0.000029999999999999997
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects unassigned currency code AAA in every factory",
+          "status": "passed",
+          "durationSeconds": 0.00002
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > retains recognized ISO currency BRL as a string",
+          "status": "passed",
+          "durationSeconds": 0.00017
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > retains recognized ISO currency USD as a string",
+          "status": "passed",
+          "durationSeconds": 0.000059999999999999995
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects a currency number instead of coercing it to text",
+          "status": "passed",
+          "durationSeconds": 0.000059999999999999995
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects non-string monetary inputs at the runtime boundary",
+          "status": "passed",
+          "durationSeconds": 0.00020999999999999998
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > retains exactness at numeric(38,2) limits and rejects overflow",
+          "status": "passed",
+          "durationSeconds": 0.00047999999999999996
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > supports signed internal deltas and persistence without allowing negative input",
+          "status": "passed",
+          "durationSeconds": 0.00026000000000000003
+        },
+        {
+          "file": "tests/unit/money.test.ts",
+          "name": "Money contract > rejects every cross-currency operation, including comparisons",
+          "status": "passed",
+          "durationSeconds": 0.00027
+        },
+        {
+          "file": "tests/unit/transport-workers.test.ts",
+          "name": "outbox normalizes the PostgreSQL UPDATE RETURNING tuple and publishes after claim commit",
+          "status": "passed",
+          "durationSeconds": 0.0015300000000000001
+        },
+        {
+          "file": "tests/unit/transport-workers.test.ts",
+          "name": "an empty PostgreSQL UPDATE RETURNING tuple makes no broker publication",
+          "status": "passed",
+          "durationSeconds": 0.00051
+        },
+        {
+          "file": "tests/unit/transport-workers.test.ts",
+          "name": "shutdown returns unfinished messages to visibility before the process shutdown budget expires",
+          "status": "passed",
+          "durationSeconds": 0.07396
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Integration event envelopes > processed events carry versioned decimal string data and copied dates",
+          "status": "passed",
+          "durationSeconds": 0.0010500000000000002
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Integration event envelopes > LOSS publishes a processed event without any wallet movement",
+          "status": "passed",
+          "durationSeconds": 0.00014000000000000001
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Integration event envelopes > rejection and reference waiting have distinct concrete types",
+          "status": "passed",
+          "durationSeconds": 0.00043
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Integration event envelopes > wallet balance changes derive their monetary data from a reconciled ledger",
+          "status": "passed",
+          "durationSeconds": 0.00045
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Inbox and outbox state > inbox completion is idempotent and preserves its first completion time",
+          "status": "passed",
+          "durationSeconds": 0.00019
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Inbox and outbox state > outbox snapshots the envelope and schedules capped exponential backoff",
+          "status": "passed",
+          "durationSeconds": 0.0005
+        },
+        {
+          "file": "tests/unit/messages-events.test.ts",
+          "name": "Inbox and outbox state > rehydrates delayed outbox delivery without resetting retry state",
+          "status": "passed",
+          "durationSeconds": 0.00008
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "public distribution allowlist > allows source, attribution and only explicitly curated evidence",
+          "status": "passed",
+          "durationSeconds": 0.00068
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "public distribution allowlist > scans every source and test file while omitting private untracked artifacts",
+          "status": "passed",
+          "durationSeconds": 0.14306
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "public distribution allowlist > rejects symlinks and path escape before copying",
+          "status": "passed",
+          "durationSeconds": 0.08774
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "metadata-only privacy detector > detects signed credential patterns, identifiers and private links without returning values",
+          "status": "passed",
+          "durationSeconds": 0.00066
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "metadata-only privacy detector > retains exact placeholders and public attribution without exempting directories",
+          "status": "passed",
+          "durationSeconds": 0.00019
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "Bun log compatibility and public evidence > matches the runner corpus and writes escaped JUnit without raw streams",
+          "status": "passed",
+          "durationSeconds": 0.00068
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "Bun log compatibility and public evidence > rejects mismatched summaries, missing markers and zero tests",
+          "status": "passed",
+          "durationSeconds": 0.00019
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "Bun log compatibility and public evidence > tracks failure and skip metadata instead of fabricating passing tests",
+          "status": "passed",
+          "durationSeconds": 0.00011999999999999999
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "Bun log compatibility and public evidence > auditing only certifies parsed empty audit JSON as clean",
+          "status": "passed",
+          "durationSeconds": 0.00020999999999999998
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "Bun log compatibility and public evidence > rejects private entrypoints and records aborted verification as failed without fabricated cases",
+          "status": "passed",
+          "durationSeconds": 0.0003
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "archive and source integrity gates > hashes executable inputs while excluding generated reports and documentation",
+          "status": "passed",
+          "durationSeconds": 0.00008
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "archive and source integrity gates > creates deterministic safe ZIP bytes and rejects traversal and symlink entries",
+          "status": "passed",
+          "durationSeconds": 0.00536
+        },
+        {
+          "file": "tests/unit/portfolio-tooling.test.ts",
+          "name": "archive and source integrity gates > blocks missing, stale, failed or tampered evidence",
+          "status": "passed",
+          "durationSeconds": 0.0020099999999999996
+        },
+        {
+          "file": "tests/unit/build-reproducibility.test.ts",
+          "name": "build output is independent of NODE_ENV and does not embed environment secrets",
+          "status": "passed",
+          "durationSeconds": 0.28197000000000005
+        },
+        {
+          "file": "tests/unit/build-reproducibility.test.ts",
+          "name": "crash injection requires both test runtime and the explicit switch",
+          "status": "passed",
+          "durationSeconds": 0.01666
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > starts pending and supports deferred reference then processing",
+          "status": "passed",
+          "durationSeconds": 0.00035
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > terminal status PROCESSED forbids every transition",
+          "status": "passed",
+          "durationSeconds": 0.00019
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > terminal status REJECTED forbids every transition",
+          "status": "passed",
+          "durationSeconds": 0.00004
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > terminal status FAILED forbids every transition",
+          "status": "passed",
+          "durationSeconds": 0.00004
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > waiting transactions may reject or fail with an auditable code",
+          "status": "passed",
+          "durationSeconds": 0.000059999999999999995
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > rehydration restores persisted state without replaying creation or transitions",
+          "status": "passed",
+          "durationSeconds": 0.000059999999999999995
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Transaction lifecycle > same payload is a replay candidate; a different hash conflicts",
+          "status": "passed",
+          "durationSeconds": 0.00011
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > BET debits, WIN and OPENING credit, LOSS never produces a ledger entry",
+          "status": "passed",
+          "durationSeconds": 0.00017
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > BET rejects zero and negative amounts",
+          "status": "passed",
+          "durationSeconds": 0.00008
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > WIN rejects zero and negative amounts",
+          "status": "passed",
+          "durationSeconds": 0.000029999999999999997
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > REFUND rejects zero and negative amounts",
+          "status": "passed",
+          "durationSeconds": 0.00004
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > ROLLBACK rejects zero and negative amounts",
+          "status": "passed",
+          "durationSeconds": 0.00002
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > OPENING rejects zero and negative amounts",
+          "status": "passed",
+          "durationSeconds": 0.00001
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > REFUND requires an external reference",
+          "status": "passed",
+          "durationSeconds": 0.000029999999999999997
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > ROLLBACK requires an external reference",
+          "status": "passed",
+          "durationSeconds": 0.000029999999999999997
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > REFUND fully reverses only a processed BET",
+          "status": "passed",
+          "durationSeconds": 0.00025
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > ROLLBACK inverses BET, WIN and REFUND and refuses all other kinds",
+          "status": "passed",
+          "durationSeconds": 0.00020999999999999998
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > reference cannot cross providerId",
+          "status": "passed",
+          "durationSeconds": 0.00008999999999999999
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > reference cannot cross playerId",
+          "status": "passed",
+          "durationSeconds": 0.000029999999999999997
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > reference cannot cross walletId",
+          "status": "passed",
+          "durationSeconds": 0.000029999999999999997
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > reference cannot cross roundId",
+          "status": "passed",
+          "durationSeconds": 0.00002
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > reference cannot cross externalTransactionId",
+          "status": "passed",
+          "durationSeconds": 0.00002
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > reference currency is validated independently of its value",
+          "status": "passed",
+          "durationSeconds": 0.00011
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > WIN may reference a BET with a different payout amount",
+          "status": "passed",
+          "durationSeconds": 0.00007000000000000001
+        },
+        {
+          "file": "tests/unit/wager-transaction.test.ts",
+          "name": "Wager operation rules > self reference, empty reference and a BET reference are invalid",
+          "status": "passed",
+          "durationSeconds": 0.0001
+        },
+        {
+          "file": "tests/unit/money-oracle.test.ts",
+          "name": "Money compatibility with independent BigInt oracle v1 > matches every deterministic addition, subtraction, comparison and signed round trip",
+          "status": "passed",
+          "durationSeconds": 0.0070999999999999995
+        },
+        {
+          "file": "tests/unit/telemetry-failure.test.ts",
+          "name": "metrics keep their last successful gauges and mark failed dependencies without leaking details",
+          "status": "passed",
+          "durationSeconds": 0.01267
+        },
+        {
+          "file": "tests/unit/consumer-shutdown-refinement.test.ts",
+          "name": "normal shutdown drains its poll and releases a late receipt without starting finance",
+          "status": "passed",
+          "durationSeconds": 0.00027
+        },
+        {
+          "file": "tests/unit/consumer-shutdown-refinement.test.ts",
+          "name": "runOnce still processes a direct invocation without starting the background loop",
+          "status": "passed",
+          "durationSeconds": 0.00039
+        },
+        {
+          "file": "tests/unit/hash.test.ts",
+          "name": "Canonical business payload hashing > object order is normalized recursively while array order remains meaningful",
+          "status": "passed",
+          "durationSeconds": 0.00023999999999999998
+        },
+        {
+          "file": "tests/unit/hash.test.ts",
+          "name": "Canonical business payload hashing > a changed financial field conflicts and absent optional fields have a stable representation",
+          "status": "passed",
+          "durationSeconds": 0.000059999999999999995
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "public transport contracts > requires the HTTP header and rejects a competing idempotency field in the body",
+          "status": "passed",
+          "durationSeconds": 0.00008999999999999999
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "public transport contracts > rejects unknown fields, OPENING, numeric money and excess precision",
+          "status": "passed",
+          "durationSeconds": 0.00011999999999999999
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "public transport contracts > wallet opening and references require valid explicit fields",
+          "status": "passed",
+          "durationSeconds": 0.00011999999999999999
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "public transport contracts > rejects malformed envelopes, invalid kinds and timestamps",
+          "status": "passed",
+          "durationSeconds": 0.0001
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "public transport contracts > pagination accepts opaque cursors and bounds page sizes",
+          "status": "passed",
+          "durationSeconds": 0.00013000000000000002
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "SQS transaction boundary > acknowledges only after the shared use case commits and carries canonical inbox data",
+          "status": "passed",
+          "durationSeconds": 0.00039
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "SQS transaction boundary > a transient failure changes visibility and leaves the source message unacknowledged",
+          "status": "passed",
+          "durationSeconds": 0.00027
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "SQS transaction boundary > invalid envelopes reach the DLQ before source acknowledgement",
+          "status": "passed",
+          "durationSeconds": 0.00026000000000000003
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "SQS transaction boundary > a rejected transaction is terminal and acknowledged without retry",
+          "status": "passed",
+          "durationSeconds": 0.00019
+        },
+        {
+          "file": "tests/unit/transport.test.ts",
+          "name": "SQS transaction boundary > an idempotency conflict is a permanent message failure",
+          "status": "passed",
+          "durationSeconds": 0.00017999999999999998
+        }
+      ],
+      "passed": 118,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0,
+      "total": 118,
+      "files": 15,
+      "assertions": 2415
+    },
+    "integration": {
+      "valid": true,
+      "issues": [],
+      "cases": [
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > wallet opening is atomic, zero has no ledger, and duplicate player/currency conflicts",
+          "status": "passed",
+          "durationSeconds": 0.0396
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > 50 identical requests through three processes debit once and replay the historical balance",
+          "status": "passed",
+          "durationSeconds": 0.40914
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > two concurrent bets of 80 from 100 produce one debit and an audited rejection",
+          "status": "passed",
+          "durationSeconds": 0.06266
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > different wallets continue while another wallet is SQL-locked",
+          "status": "passed",
+          "durationSeconds": 0.10355
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > LOSS records an outcome without balance, version, ledger or balance event",
+          "status": "passed",
+          "durationSeconds": 0.021070000000000002
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > WIN, REFUND and ROLLBACK follow reference rules and reverse once per operation kind",
+          "status": "passed",
+          "durationSeconds": 0.13861
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > a rollback that would make balance negative has a distinct rejection code",
+          "status": "passed",
+          "durationSeconds": 0.04485
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > reference delivered later is reprocessed and exhausted references reject auditably",
+          "status": "passed",
+          "durationSeconds": 0.10315
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > currency mismatch is persisted as rejected; same key with different payload returns conflict",
+          "status": "passed",
+          "durationSeconds": 0.07227
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > HTTP validates the header, external OPENING, body shape and stable ledger pagination",
+          "status": "passed",
+          "durationSeconds": 0.07390000000000001
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real PostgreSQL and three HTTP application processes > exhausted delivery cannot fail another payload and genuine failures retain their audit event",
+          "status": "passed",
+          "durationSeconds": 0.0726
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "SQL schema enforcement without bypassing ledger guards > ledger UPDATE/DELETE and unmatched balance writes fail and leave the wallet untouched",
+          "status": "passed",
+          "durationSeconds": 0.037450000000000004
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "SQL schema enforcement without bypassing ledger guards > financial transaction rolls back inbox, wallet, ledger and outbox together",
+          "status": "passed",
+          "durationSeconds": 0.06681999999999999
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "SQL schema enforcement without bypassing ledger guards > migration up/down/up succeeds in a new isolated schema",
+          "status": "passed",
+          "durationSeconds": 0.34820999999999996
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > two publishers claim disjoint outbox batches and deliver committed envelopes",
+          "status": "passed",
+          "durationSeconds": 2.3141100000000003
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > a real broker publication error persists retry state and another publisher recovers",
+          "status": "passed",
+          "durationSeconds": 0.06558
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > redelivered business message with distinct SQS delivery IDs creates one inbox and debit",
+          "status": "passed",
+          "durationSeconds": 0.06674
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > malformed contract moves to the real DLQ with a stable failure code",
+          "status": "passed",
+          "durationSeconds": 0.036520000000000004
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > a real PostgreSQL serialization error leaves SQS unacked and redelivery recovers",
+          "status": "passed",
+          "durationSeconds": 1.92621
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > retry budget exhaustion sends a real message to DLQ without a partial debit",
+          "status": "passed",
+          "durationSeconds": 5.10565
+        },
+        {
+          "file": "tests/integration/system.test.ts",
+          "name": "Real SQS inbox, transactional outbox and process recovery > worker killed after commit recovers with three new processes and no duplicated debit/event",
+          "status": "passed",
+          "durationSeconds": 4.50584
+        },
+        {
+          "file": "tests/integration/recovery-refinement.test.ts",
+          "name": "a producer killed after HTTP commit leaves unpublished events for three replacement workers",
+          "status": "passed",
+          "durationSeconds": 2.2418299999999998
+        },
+        {
+          "file": "tests/integration/recovery-refinement.test.ts",
+          "name": "a reused inbox message ID with different contents reaches DLQ without replacing its hash or debit",
+          "status": "passed",
+          "durationSeconds": 0.05262
+        },
+        {
+          "file": "tests/integration/recovery-refinement.test.ts",
+          "name": "real SIGTERM releases a SQL-blocked delivery before unlocking and recovery debits once",
+          "status": "passed",
+          "durationSeconds": 2.1120799999999997
+        },
+        {
+          "file": "tests/integration/observability-refinement.test.ts",
+          "name": "Persisted status, backlog and structured telemetry > metrics reflect worker transitions and FAILED rows without counting a replay as another transaction",
+          "status": "passed",
+          "durationSeconds": 0.10715000000000001
+        },
+        {
+          "file": "tests/integration/observability-refinement.test.ts",
+          "name": "Persisted status, backlog and structured telemetry > publisher logs keep the wallet distinct from a transaction aggregate and omit monetary payloads",
+          "status": "passed",
+          "durationSeconds": 0.03893
+        },
+        {
+          "file": "tests/integration/observability-refinement.test.ts",
+          "name": "reconciliation reports signed historical divergence, logs it, and never repairs data silently",
+          "status": "passed",
+          "durationSeconds": 0.048549999999999996
+        },
+        {
+          "file": "tests/integration/financial-refinement.test.ts",
+          "name": "Financial edge contracts verified through real persistence > TRUNCATE cannot remove ledger or transaction audit, even through CASCADE",
+          "status": "passed",
+          "durationSeconds": 0.02016
+        },
+        {
+          "file": "tests/integration/financial-refinement.test.ts",
+          "name": "Financial edge contracts verified through real persistence > another idempotency key cannot reapply an external operation",
+          "status": "passed",
+          "durationSeconds": 0.09744
+        },
+        {
+          "file": "tests/integration/financial-refinement.test.ts",
+          "name": "Financial edge contracts verified through real persistence > different concurrent refunds of one bet produce one credit and an audited rejection",
+          "status": "passed",
+          "durationSeconds": 0.07217
+        },
+        {
+          "file": "tests/integration/financial-refinement.test.ts",
+          "name": "Financial edge contracts verified through real persistence > PostgreSQL preserves the monetary boundary exactly and an overflowing credit is rejected without mutation",
+          "status": "passed",
+          "durationSeconds": 0.017
+        },
+        {
+          "file": "tests/integration/financial-refinement.test.ts",
+          "name": "Financial edge contracts verified through real persistence > reference TTL expires before the attempt budget and zero LOSS changes no balance or version",
+          "status": "passed",
+          "durationSeconds": 1.12444
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Finite monetary values enforced by real PostgreSQL > wallet balance rejects numeric NaN",
+          "status": "passed",
+          "durationSeconds": 0.00758
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Finite monetary values enforced by real PostgreSQL > transaction amount rejects numeric NaN",
+          "status": "passed",
+          "durationSeconds": 0.00231
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Finite monetary values enforced by real PostgreSQL > transaction result balance rejects numeric NaN",
+          "status": "passed",
+          "durationSeconds": 0.0025
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Finite monetary values enforced by real PostgreSQL > ledger amount rejects numeric NaN",
+          "status": "passed",
+          "durationSeconds": 0.00268
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Finite monetary values enforced by real PostgreSQL > ledger balance before rejects numeric NaN",
+          "status": "passed",
+          "durationSeconds": 0.00259
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Finite monetary values enforced by real PostgreSQL > ledger balance after rejects numeric NaN",
+          "status": "passed",
+          "durationSeconds": 0.00216
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Continuous monetary history enforced at the deferred transaction boundary > rejects a discontinuous before/after snapshot even when the global ledger sum matches",
+          "status": "passed",
+          "durationSeconds": 0.00536
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Continuous monetary history enforced at the deferred transaction boundary > rejects missing ledger versions even when the final version, balance and arithmetic match",
+          "status": "passed",
+          "durationSeconds": 0.00366
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Continuous monetary history enforced at the deferred transaction boundary > rejects an OPENING assigned to the first version after a zero wallet",
+          "status": "passed",
+          "durationSeconds": 0.00289
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Continuous monetary history enforced at the deferred transaction boundary > an empty ledger requires zero balance and initial version one",
+          "status": "passed",
+          "durationSeconds": 0.00296
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Continuous monetary history enforced at the deferred transaction boundary > accepts a positive opening followed by a matching credit",
+          "status": "passed",
+          "durationSeconds": 0.00651
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "Continuous monetary history enforced at the deferred transaction boundary > accepts a first credit at version two when the wallet opened with zero",
+          "status": "passed",
+          "durationSeconds": 0.00327
+        },
+        {
+          "file": "tests/integration/schema-refinement.test.ts",
+          "name": "all three migrations reverse and reapply in a rolled-back isolated schema; financial down retains rows",
+          "status": "passed",
+          "durationSeconds": 0.15034999999999998
+        },
+        {
+          "file": "tests/integration/outbox-refinement.test.ts",
+          "name": "a publisher killed after its real SQL claim is recovered after lease expiry with the original event IDs",
+          "status": "passed",
+          "durationSeconds": 1.96391
+        },
+        {
+          "file": "tests/integration/outbox-refinement.test.ts",
+          "name": "a publisher that loses its token after a real send cannot finalize or clear the new owners claim",
+          "status": "passed",
+          "durationSeconds": 0.15986
+        }
+      ],
+      "passed": 47,
+      "failed": 0,
+      "skipped": 0,
+      "todo": 0,
+      "total": 47,
+      "files": 6,
+      "assertions": 239
+    }
+  },
+  "audit": {
+    "valid": true,
+    "affectedPackages": 0,
+    "advisoryEntries": 0
+  },
+  "publication": {
+    "schemaVersion": 1,
+    "status": "PASSED",
+    "scannedFiles": 100,
+    "findings": []
+  },
+  "secretScan": {
+    "tool": "gitleaks",
+    "version": "8.30.1",
+    "findings": 0,
+    "status": "PASSED"
+  }
+}
